@@ -3,9 +3,9 @@ import json
 import msgpack
 
 # To consume latest messages and auto-commit offsets
-consumer = KafkaConsumer('my-topic',
+consumer = KafkaConsumer('msgpack-topic',
                          group_id='my-group',
-                         bootstrap_servers=['hparch2.tlnnegm.local:9092'])
+                         bootstrap_servers=['hparch2:9092'])
 for message in consumer:
     # message value and key are raw bytes -- decode if necessary!
     # e.g., for unicode: `message.value.decode('utf-8')`

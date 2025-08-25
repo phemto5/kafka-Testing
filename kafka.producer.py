@@ -6,7 +6,7 @@ import json
 producer = KafkaProducer(bootstrap_servers=['hparch2:9092'])
 
 # Asynchronous by default
-future = producer.send('my-topic', b'raw_bytes')
+future = producer.send('my-topic', b'message on1')
 
 # Block for 'synchronous' sends
 try:
@@ -22,15 +22,15 @@ print (record_metadata.partition)
 print (record_metadata.offset)
 
 # produce keyed messages to enable hashed partitioning
-producer.send('my-topic', key=b'foo', value=b'bar')
+producer.send('my-topic', key=b'foo', value=b'message2')
 
 # encode objects via msgpack
 producer = KafkaProducer(value_serializer=msgpack.dumps)
-producer.send('msgpack-topic', {'key': 'value'})
+producer.send('msgpack-topic', {'key': 'value','propertyObj':{'sub':'awkward'}})
 
 # produce json messages
-producer = KafkaProducer(value_serializer=lambda m: json.dumps(m).encode('ascii'))
-producer.send('json-topic', {'key': 'value'})
+# producer = KafkaProducer(value_serializer=lambda m: json.dumps(m).encode('ascii'))
+# producer.send('json-topic', {'key': 'value'})
 
 # produce asynchronously
 for _ in range(100):
