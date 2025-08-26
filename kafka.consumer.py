@@ -13,7 +13,7 @@ for message in consumer:
                                           message.offset, message.key,
                                           message.value))
 
-# consume earliest available messages, don't commit offsets
+""" # consume earliest available messages, don't commit offsets
 KafkaConsumer(auto_offset_reset='earliest', enable_auto_commit=False)
 
 # consume json messages
@@ -37,3 +37,4 @@ consumer1 = KafkaConsumer('my-topic',
 consumer2 = KafkaConsumer('my-topic',
                           group_id='my-group',
                           bootstrap_servers='hparch2.tlnnegm.local:9092')
+ """
